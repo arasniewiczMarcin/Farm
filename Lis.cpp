@@ -1,7 +1,7 @@
 #include "Lis.h"
 
-Lis::Lis(char pionek, int sila, int inicjatywa, Swiat* swiat)
-	: Zwierze(pionek, sila, inicjatywa, swiat) {
+Lis::Lis(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat)
+	: Zwierze(pionek, sila, inicjatywa, wiek, swiat) {
 }
 Lis::~Lis() {
 }

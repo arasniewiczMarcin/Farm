@@ -1,4 +1,15 @@
 #include "Swiat.h"
+#include "Wilk.h"
+#include "Czlowiek.h"
+#include "Antylopa.h"
+#include "Zolw.h"
+#include "Owca.h"
+#include "Lis.h"
+#include "Trawa.h"
+#include "Mlecz.h"
+#include "Guarana.h"
+#include "Barszcz_Sosnowskiego.h"
+#include "Wilcze_Jagody.h"
 
 #define ILOSC_ORGANIZMOW 11
 
@@ -16,6 +27,29 @@ void Swiat::ustawWysokosc(int wysokosc) {
 }
 void Swiat::dodajNaPole(Polozenie polozenie, char pionek) {
 	plansza[polozenie.y][polozenie.x] = pionek;
+}
+void Swiat::usunZPola(Polozenie polozenie) {
+	plansza[polozenie.y][polozenie.x] = ' ';
+}
+
+void Swiat::dodajOrganizmyPoczatkowe(vector<Organizm*> organizmy, int wysokoscPlanszy, int szerokoscPlanszy) {
+	string nazwyOrganizmow[ILOSC_ORGANIZMOW + 1] = { "Czlowiek", "Wilk", "Owca", "Lis", "Zolw", "Antylopa"
+		, "Trawa", "Mlecz", "Guarana", "Wilcze Jagody", "Barszcz Sosnowskiego" };
+	int ileOrganizmowPoszczegolnychGatunkow = ((wysokoscPlanszy * szerokoscPlanszy) / (10 * ILOSC_ORGANIZMOW)) + 1;
+	for (int i = 0; i < ileOrganizmowPoszczegolnychGatunkow; i++) {
+
+		organizmy.push_back(new Czlowiek('C', 5, 4, 0, this));
+		organizmy.push_back(new Wilk('W', 9, 5, 0, this));
+		organizmy.push_back(new Owca('O', 4, 4, 0, this));
+		organizmy.push_back(new Lis('L', 3, 7, 0, this));
+		organizmy.push_back(new Zolw('Z', 2, 1, 0, this));
+		organizmy.push_back(new Antylopa('A', 4, 4, 0, this));
+		//organizmy.push_back(new Trawa('T', 0, 0, this));
+		//organizmy.push_back(new Mlecz('M', 0, 0, this));
+		//organizmy.push_back(new Guarana('G', 0, 0, this));
+		//organizmy.push_back(new Wilcze_Jagody('J', 99, 0, this));
+		//organizmy.push_back(new Barszcz_Sosnowskiego('B', 10, 0, this));
+	}
 }
 
 void Swiat::rysujSwiat() {
@@ -64,9 +98,8 @@ Swiat::Swiat() {
 		for (int j = 0; j < zwrocSzerokosc(); j++)
 			this->plansza[i][j] = ' ';
 	}
-	//dodanie organizmow
-	int poczatkowaSumaOrganizmowJednegoRodzaju = ((wysokosc * szerokosc) / (10 * ILOSC_ORGANIZMOW));
 
+	dodajOrganizmyPoczatkowe(organizmy, wysokosc, szerokosc);
 	rysujSwiat();
 }
 
@@ -86,4 +119,8 @@ Swiat::~Swiat() {
 		delete[] plansza[i];
 
 	delete[] plansza;
+
+	organizmy.erase(organizmy.begin(), organizmy.end());
+
+	
 }

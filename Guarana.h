@@ -3,7 +3,7 @@
 class Guarana: public Roslina
 {
 	public:
-	Guarana(char pionek, int sila, int inicjatywa, Swiat* swiat);
+	Guarana(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 	~Guarana();
 };
 

@@ -3,7 +3,7 @@
 class Lis: public Zwierze
 {
 	public:
-	Lis(char pionek, int sila, int inicjatywa, Swiat* swiat);
+	Lis(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 	~Lis();
 };
 

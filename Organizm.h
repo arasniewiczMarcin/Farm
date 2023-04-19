@@ -26,13 +26,14 @@ protected:
 	int inicjatywa;
 	Polozenie polozenie;
 	Swiat *swiat;
+	int wiek;
 	
 public:
 	virtual void akcja() = 0;
 	virtual void kolizja() = 0;
 	virtual void rysowanie() = 0;
 	Polozenie wylosujPolozenie(Swiat* swiat);
-	Organizm(char pionek, int sila, int inicjatywa, Swiat* swiat);
+	Organizm(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 
 	~Organizm();
 

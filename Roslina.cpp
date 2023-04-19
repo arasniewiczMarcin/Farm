@@ -1,7 +1,7 @@
 #include "Roslina.h"
 
-Roslina::Roslina(char pionek, int sila, int inicjatywa, Swiat* swiat)
-	:Organizm(pionek, sila, inicjatywa, swiat)
+Roslina::Roslina(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat)
+	:Organizm(pionek, sila, inicjatywa, wiek, swiat)
 {
 
 }

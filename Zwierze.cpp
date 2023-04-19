@@ -2,8 +2,8 @@
 
 
 
-Zwierze::Zwierze(char pionek, int sila, int inicjatywa, Swiat* swiat)
-:Organizm(pionek, sila, inicjatywa, swiat){
+Zwierze::Zwierze(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat)
+:Organizm(pionek, sila, inicjatywa, wiek, swiat){
 
 }
 

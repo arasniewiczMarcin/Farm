@@ -7,7 +7,7 @@ public:
 	void akcja()override;
 	void kolizja()override;
 	void rysowanie()override;
-	Zwierze(char pionek, int sila, int inicjatywa, Swiat* swiat);
+	Zwierze(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 	~Zwierze();
 };
 

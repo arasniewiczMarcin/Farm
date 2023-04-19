@@ -6,7 +6,7 @@ public:
 	void akcja()override;
 	void kolizja()override;
 	void rysowanie()override;
-	Roslina(char pionek, int sila, int inicjatywa, Swiat* swiat);
+	Roslina(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 	~Roslina();
 };
 

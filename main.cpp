@@ -2,18 +2,22 @@
 #include "Swiat.h"
 #include "Organizm.h"
 #include "Zwierze.h"
-#include "Wilk.h"
+
 
 
 using namespace std;
 
 int main()
 {
-    int i = 0;
+    
     Swiat s;
-    Wilk w('W', 9, 5, &s);
-
-
-    s.rysujSwiat();
+    char command = ' ';
+    char humanDirection[2];
+    while (true) {
+        command = getchar();
+        if (command == 'n') s.wykonajTure();
+       
+    }
+    
     
 }
