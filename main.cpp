@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include "Swiat.h"
 #include "Organizm.h"
 #include "Zwierze.h"
@@ -11,12 +12,17 @@ int main()
 {
     
     Swiat s;
+    s.rysujSwiat();
     char command = ' ';
     char humanDirection[2];
+
     while (true) {
-        command = getchar();
-        if (command == 'n') s.wykonajTure();
-       
+        cout << "Wcisnij n aby wykonac Ture" << endl;
+        command = _getch();
+        if (command == 'n') {
+            s.wykonajTure();
+            s.rysujSwiat();
+        }
     }
     
     

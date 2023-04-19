@@ -37,7 +37,7 @@ public:
 	bool sprawdzCzyPoleJestPuste(int x, int y);
 	void ustawWysokosc(int wysokosc);
 	void ustawSzerokosc(int szerokosc);
-	void dodajOrganizmyPoczatkowe(vector<Organizm*> organizmy, int wysokoscPlanszy, int szerokoscPlanszy);
+	void dodajOrganizmyPoczatkowe(int wysokoscPlanszy, int szerokoscPlanszy);
 	Swiat();
 	~Swiat();
 

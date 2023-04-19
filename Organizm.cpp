@@ -1,5 +1,19 @@
 #include "Organizm.h"
 
+
+
+int Organizm::zwrocInicjatywe() {
+	return inicjatywa;
+}
+int Organizm::zwrocSile() {
+	return sila;
+}
+char Organizm::zwrocPionek() {
+	return pionek;
+}
+int Organizm::zwrocWiek() {
+	return wiek;
+}
 Polozenie Organizm::wylosujPolozenie(Swiat* swiat) {
 	srand(time(NULL));
 	int randomX, randomY, randomXtoMultiply, randomYtoMultiply;
@@ -20,6 +34,28 @@ Polozenie Organizm::wylosujPolozenie(Swiat* swiat) {
 	
 	return p;
 
+}
+Polozenie Organizm::zwrocPolozenie() {
+	return polozenie;
+}
+void Organizm::zmienPolozenie(int wektor[], Swiat* swiat) {
+
+	Polozenie nowePolozenie;
+	nowePolozenie.x = this->polozenie.x + wektor[X];
+	nowePolozenie.y = this->polozenie.y + wektor[Y];
+	if (swiat->sprawdzCzyPoleJestPuste(nowePolozenie.x, nowePolozenie.y) == true) {
+		swiat->usunZPola(zwrocPolozenie());
+		swiat->dodajNaPole(nowePolozenie, this->pionek);
+		this->polozenie = nowePolozenie;
+	}
+	else {
+		//kolizja
+	}
+}
+int Organizm::wylosujKierunek() {
+	srand(time(NULL));
+	int kierunek = ((rand() * 3) % 4) + 1;
+	return kierunek;
 }
 
 Organizm::Organizm(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat) {

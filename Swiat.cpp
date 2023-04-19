@@ -12,6 +12,7 @@
 #include "Wilcze_Jagody.h"
 
 #define ILOSC_ORGANIZMOW 11
+#define MAKS_INICJATYWA 7
 
 int Swiat::zwrocWysokosc() {
 	return wysokoscPlanszy;
@@ -32,10 +33,15 @@ void Swiat::usunZPola(Polozenie polozenie) {
 	plansza[polozenie.y][polozenie.x] = ' ';
 }
 
-void Swiat::dodajOrganizmyPoczatkowe(vector<Organizm*> organizmy, int wysokoscPlanszy, int szerokoscPlanszy) {
+void Swiat::dodajOrganizmyPoczatkowe(int wysokoscPlanszy, int szerokoscPlanszy) {
 	string nazwyOrganizmow[ILOSC_ORGANIZMOW + 1] = { "Czlowiek", "Wilk", "Owca", "Lis", "Zolw", "Antylopa"
 		, "Trawa", "Mlecz", "Guarana", "Wilcze Jagody", "Barszcz Sosnowskiego" };
 	int ileOrganizmowPoszczegolnychGatunkow = ((wysokoscPlanszy * szerokoscPlanszy) / (10 * ILOSC_ORGANIZMOW)) + 1;
+
+	organizmy.push_back(new Wilk('W', 9, 5, 0, this));
+	//organizmy.push_back(new Czlowiek('C', 9, 5, 0, this));
+	organizmy.push_back(new Owca('O', 9, 5, 0, this));
+	/*
 	for (int i = 0; i < ileOrganizmowPoszczegolnychGatunkow; i++) {
 
 		organizmy.push_back(new Czlowiek('C', 5, 4, 0, this));
@@ -49,7 +55,7 @@ void Swiat::dodajOrganizmyPoczatkowe(vector<Organizm*> organizmy, int wysokoscPl
 		//organizmy.push_back(new Guarana('G', 0, 0, this));
 		//organizmy.push_back(new Wilcze_Jagody('J', 99, 0, this));
 		//organizmy.push_back(new Barszcz_Sosnowskiego('B', 10, 0, this));
-	}
+	}*/
 }
 
 void Swiat::rysujSwiat() {
@@ -89,22 +95,33 @@ Swiat::Swiat() {
 	cin >> szerokosc;
 	ustawSzerokosc(szerokosc);
 
-	plansza = new char* [wysokosc];
+	this->wysokoscPlanszy = wysokosc;
+	this->szerokoscPlanszy = szerokosc;
+
+	this->plansza = new char* [wysokosc];
 	for (int i = 0; i < wysokosc; i++)
-		plansza[i] = new char[szerokosc];
+		this->plansza[i] = new char[szerokosc];
 
 
 	for (int i = 0; i < zwrocWysokosc(); i++) {
 		for (int j = 0; j < zwrocSzerokosc(); j++)
 			this->plansza[i][j] = ' ';
 	}
+	this->organizmy = vector<Organizm*>();
 
-	dodajOrganizmyPoczatkowe(organizmy, wysokosc, szerokosc);
-	rysujSwiat();
+	dodajOrganizmyPoczatkowe(zwrocWysokosc(), zwrocWysokosc());
 }
 
 void Swiat::wykonajTure() {
 
+	for (int i = MAKS_INICJATYWA; i >= 0 ; i--) {
+		for (int j = 0; j < organizmy.size(); j++) {
+			if (organizmy[j]->zwrocInicjatywe() == i) {
+				//cout << "wykonuje akcje dla: " << organizmy[j]->zwrocPionek() << endl;
+				organizmy[j]->akcja(this);
+			}
+		}
+	}
 }
 bool Swiat::sprawdzCzyPoleJestPuste(int x, int y) {
 	if(plansza[y][x] == ' ')

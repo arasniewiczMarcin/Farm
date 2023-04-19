@@ -5,7 +5,7 @@ Roslina::Roslina(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat)
 {
 
 }
-void Roslina::akcja() {
+void Roslina::akcja(Swiat* swiat) {
 
 }
 void Roslina::kolizja() {

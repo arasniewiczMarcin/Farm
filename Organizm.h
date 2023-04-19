@@ -17,6 +17,10 @@
 #define BARSZCZ_SOSNOWSKIEGO 'B'
 
 
+#define X 0
+#define Y 1
+
+
 class Organizm
 {
 
@@ -29,10 +33,19 @@ protected:
 	int wiek;
 	
 public:
-	virtual void akcja() = 0;
+	virtual void akcja(Swiat* swiat) = 0;
 	virtual void kolizja() = 0;
 	virtual void rysowanie() = 0;
+
+	Polozenie zwrocPolozenie();
+	int zwrocInicjatywe();
+	int zwrocSile();
+	char zwrocPionek();
+	int wylosujKierunek();
+	int zwrocWiek();
+
 	Polozenie wylosujPolozenie(Swiat* swiat);
+	void zmienPolozenie(int wektor[], Swiat* swiat);
 	Organizm(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 
 	~Organizm();
