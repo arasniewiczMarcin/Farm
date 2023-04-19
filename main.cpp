@@ -14,6 +14,7 @@ int main()
     Swiat s;
     s.rysujSwiat();
     char command = ' ';
+ 
     char humanDirection[2];
 
     while (true) {

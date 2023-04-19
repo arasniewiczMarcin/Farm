@@ -20,6 +20,9 @@ int Swiat::zwrocWysokosc() {
 int Swiat::zwrocSzerokosc() {
 	return szerokoscPlanszy;
 }
+char Swiat::zwrocPole(int x, int y) {
+	return plansza[y][x];
+}
 void Swiat::ustawSzerokosc(int szerokosc) {
 	this->szerokoscPlanszy = szerokosc;
 }
@@ -37,25 +40,24 @@ void Swiat::dodajOrganizmyPoczatkowe(int wysokoscPlanszy, int szerokoscPlanszy) 
 	string nazwyOrganizmow[ILOSC_ORGANIZMOW + 1] = { "Czlowiek", "Wilk", "Owca", "Lis", "Zolw", "Antylopa"
 		, "Trawa", "Mlecz", "Guarana", "Wilcze Jagody", "Barszcz Sosnowskiego" };
 	int ileOrganizmowPoszczegolnychGatunkow = ((wysokoscPlanszy * szerokoscPlanszy) / (10 * ILOSC_ORGANIZMOW)) + 1;
+	organizmy.push_back(new Czlowiek('C', 5, 4, 0, this));
+	
+	//for (int i = 0; i < ileOrganizmowPoszczegolnychGatunkow; i++) {
+	for (int i = 0; i < 30; i++) {
 
-	organizmy.push_back(new Wilk('W', 9, 5, 0, this));
-	//organizmy.push_back(new Czlowiek('C', 9, 5, 0, this));
-	organizmy.push_back(new Owca('O', 9, 5, 0, this));
-	/*
-	for (int i = 0; i < ileOrganizmowPoszczegolnychGatunkow; i++) {
 
-		organizmy.push_back(new Czlowiek('C', 5, 4, 0, this));
 		organizmy.push_back(new Wilk('W', 9, 5, 0, this));
-		organizmy.push_back(new Owca('O', 4, 4, 0, this));
+		/*organizmy.push_back(new Owca('O', 4, 4, 0, this));
 		organizmy.push_back(new Lis('L', 3, 7, 0, this));
 		organizmy.push_back(new Zolw('Z', 2, 1, 0, this));
-		organizmy.push_back(new Antylopa('A', 4, 4, 0, this));
-		//organizmy.push_back(new Trawa('T', 0, 0, this));
-		//organizmy.push_back(new Mlecz('M', 0, 0, this));
-		//organizmy.push_back(new Guarana('G', 0, 0, this));
-		//organizmy.push_back(new Wilcze_Jagody('J', 99, 0, this));
-		//organizmy.push_back(new Barszcz_Sosnowskiego('B', 10, 0, this));
-	}*/
+		organizmy.push_back(new Antylopa('A', 4, 4, 0, this));*/
+		//	//organizmy.push_back(new Trawa('T', 0, 0, this));
+		//	//organizmy.push_back(new Mlecz('M', 0, 0, this));
+		//	//organizmy.push_back(new Guarana('G', 0, 0, this));
+		//	//organizmy.push_back(new Wilcze_Jagody('J', 99, 0, this));
+		//	//organizmy.push_back(new Barszcz_Sosnowskiego('B', 10, 0, this));
+		//}
+	}
 }
 
 void Swiat::rysujSwiat() {
@@ -69,19 +71,19 @@ void Swiat::rysujSwiat() {
 	system("cls");
 	cout << "Marcin Arasniewicz, 188857" << endl << endl;
 	cout << lewyGornyRogPlanszy;
-	for (int i = 1; i < zwrocSzerokosc(); i++) cout << dolGoraPlanszy;
+	for (int i = 1; i < zwrocSzerokosc() + 1; i++) cout << dolGoraPlanszy;
 	cout << prawyGornyRogPlanszy;
 	cout << endl;
 
 	for (int i = 0; i < zwrocWysokosc() ; i++) {
-		for (int j = -1; j < zwrocSzerokosc(); j++) {
-			if (j == -1 || j == zwrocSzerokosc() - 1)cout << bokPlanszy;
+		for (int j = -1; j <= zwrocSzerokosc(); j++) {
+			if (j == -1 || j == zwrocSzerokosc())cout << bokPlanszy;
 			else cout << this->plansza[i][j];
 		}
 		cout << endl;
 	}
 	cout << lewyDolnyRogPlanszy;
-	for (int i = 1; i < zwrocSzerokosc(); i++) cout << dolGoraPlanszy;
+	for (int i = 1; i < zwrocSzerokosc() + 1; i++) cout << dolGoraPlanszy;
 	cout << prawyDolnyRogPlanszy;
 	cout << endl;
 }
@@ -108,16 +110,23 @@ Swiat::Swiat() {
 			this->plansza[i][j] = ' ';
 	}
 	this->organizmy = vector<Organizm*>();
-
 	dodajOrganizmyPoczatkowe(zwrocWysokosc(), zwrocWysokosc());
 }
 
-void Swiat::wykonajTure() {
+Organizm* Swiat::zwrocOrganizm(Polozenie polozenie) {
+	for (int i = 0; i < organizmy.size(); i++) {
+		if (polozenie.x == organizmy[i]->zwrocPolozenie().x &&
+			polozenie.y == organizmy[i]->zwrocPolozenie().y) {
+			return organizmy[i];
+		}
+	}
+}
 
+void Swiat::wykonajTure() {
+	srand(time(NULL));
 	for (int i = MAKS_INICJATYWA; i >= 0 ; i--) {
 		for (int j = 0; j < organizmy.size(); j++) {
 			if (organizmy[j]->zwrocInicjatywe() == i) {
-				//cout << "wykonuje akcje dla: " << organizmy[j]->zwrocPionek() << endl;
 				organizmy[j]->akcja(this);
 			}
 		}

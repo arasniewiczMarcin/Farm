@@ -34,7 +34,7 @@ protected:
 	
 public:
 	virtual void akcja(Swiat* swiat) = 0;
-	virtual void kolizja() = 0;
+	virtual void kolizja(Swiat* swiat, Polozenie miejsceKolizji) = 0;
 	virtual void rysowanie() = 0;
 
 	Polozenie zwrocPolozenie();

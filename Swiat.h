@@ -34,10 +34,12 @@ public:
 	void usunZPola(Polozenie polozenie);
 	int zwrocWysokosc();
 	int zwrocSzerokosc();
+	char zwrocPole(int x, int y);
 	bool sprawdzCzyPoleJestPuste(int x, int y);
 	void ustawWysokosc(int wysokosc);
 	void ustawSzerokosc(int szerokosc);
 	void dodajOrganizmyPoczatkowe(int wysokoscPlanszy, int szerokoscPlanszy);
+	Organizm* zwrocOrganizm(Polozenie polozenie);
 	Swiat();
 	~Swiat();
 

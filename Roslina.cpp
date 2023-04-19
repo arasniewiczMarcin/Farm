@@ -8,7 +8,7 @@ Roslina::Roslina(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat)
 void Roslina::akcja(Swiat* swiat) {
 
 }
-void Roslina::kolizja() {
+void Roslina::kolizja(Swiat* swiat, Polozenie miejsceKolizji) {
 
 }
 void Roslina::rysowanie() {

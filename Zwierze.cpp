@@ -29,14 +29,39 @@ void Zwierze::akcja(Swiat* swiat) {
 			wektor[Y] = -1;
 			break;
 		}
+		if (polozenie.x + wektor[X] < 0 || polozenie.x + wektor[X] >= swiat->zwrocSzerokosc() ||
+			polozenie.y + wektor[Y] < 0 || polozenie.y + wektor[Y] >= swiat->zwrocWysokosc())
+			continue; 
 		//warunek do ponownego wylosowania kierunku
-		break;
+		else break;
 	}
 
 	zmienPolozenie(wektor, swiat);
 }
-void Zwierze::kolizja() {
 
+void Zwierze::walka(Zwierze* atakujacy, Organizm* broniacy) {
+	if (atakujacy->sila >= broniacy->zwrocSile()) {
+		//wygrana i atakujacy dostaje nowe polozenie
+		atakujacy->polozenie = broniacy->zwrocPolozenie();
+		//usunOrganizm(broniacy);
+	}
+	else if (atakujacy->sila < broniacy->zwrocSile()) {
+		//przegrana
+		//usunOrganizm(atakujacy);
+		//usunZPola(atakujacy)
+
+	}
+}
+
+void Zwierze::kolizja(Swiat* swiat, Polozenie miejsceKolizji) {
+	if (this->pionek == swiat->zwrocPole(miejsceKolizji.x, miejsceKolizji.y)) {
+		//rozmnazanie
+		//rozmnazanie(this->pionek, swiat);
+	}
+	else {
+		//walka
+		walka(this, swiat->zwrocOrganizm(miejsceKolizji));
+	}
 }
 void Zwierze::rysowanie() {
 

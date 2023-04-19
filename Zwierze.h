@@ -14,8 +14,9 @@ class Zwierze : public Organizm
 {
 public:
 	void akcja(Swiat* swiat)override;
-	void kolizja()override;
+	void kolizja(Swiat* swiat, Polozenie miejsceKolizji)override;
 	void rysowanie()override;
+	void walka(Zwierze* atakujacy, Organizm* broniacy);
 	Zwierze(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
 	~Zwierze();
 };

@@ -30,10 +30,7 @@ Polozenie Organizm::wylosujPolozenie(Swiat* swiat) {
 			break;
 		}
 	}
-
-	
 	return p;
-
 }
 Polozenie Organizm::zwrocPolozenie() {
 	return polozenie;
@@ -50,10 +47,14 @@ void Organizm::zmienPolozenie(int wektor[], Swiat* swiat) {
 	}
 	else {
 		//kolizja
+		swiat->usunZPola(zwrocPolozenie());
+
+		this->kolizja(swiat, nowePolozenie); 
+
+		
 	}
 }
 int Organizm::wylosujKierunek() {
-	srand(time(NULL));
 	int kierunek = ((rand() * 3) % 4) + 1;
 	return kierunek;
 }
