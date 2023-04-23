@@ -3,7 +3,7 @@
 class Owca : public Zwierze
 {
 public:
-	Owca(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
+	Owca(char pionek, int sila, int inicjatywa, bool ruch, Swiat* swiat, Polozenie polozenie);
 	~Owca();
 
 };

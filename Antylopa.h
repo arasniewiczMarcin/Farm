@@ -2,7 +2,9 @@
 #include "Zwierze.h"
 class Antylopa : public Zwierze{
 	public:
-	Antylopa(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
+	void akcja(Swiat* swiat)override;
+	bool umiejetnoscKolizja(Organizm* atakujacy, string& komentarz)override;
+	Antylopa(char pionek, int sila, int inicjatywa, bool ruch, Swiat* swiat, Polozenie polozenie);
 	~Antylopa();
 };
 

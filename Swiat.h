@@ -21,24 +21,38 @@ class Organizm;
 class Swiat
 {
 private:
-	/*enum organizmy {CZLOWIEK, WILK, OWCA, LIS, ZOLW, ANTYLOPA, CYBEROWCA,
-		TRAWA, MLECZ, GUARANA, WILCZE_JAGODY, BARSZCZ_SOSNOWSKIEGO};*/
 	vector<Organizm*> organizmy;
 	int wysokoscPlanszy;
 	int szerokoscPlanszy;
 	char** plansza;
+	string komentarz;
 public:
-	void wykonajTure();
-	void rysujSwiat();
-	void dodajNaPole(Polozenie polozenie, char pionek);
-	void usunZPola(Polozenie polozenie);
+
 	int zwrocWysokosc();
 	int zwrocSzerokosc();
 	char zwrocPole(int x, int y);
-	bool sprawdzCzyPoleJestPuste(int x, int y);
+
 	void ustawWysokosc(int wysokosc);
 	void ustawSzerokosc(int szerokosc);
+
+	void dodajOrganizm(Organizm* organizm);
+	void wykonajTure();
+	void rysujOrganizmy();
+	void rysujSwiat();
+	bool sprawdzCzyPoleJestPuste(int x, int y);
 	void dodajOrganizmyPoczatkowe(int wysokoscPlanszy, int szerokoscPlanszy);
+	void usunOrganizm(Organizm* organizm);
+	void wlaczUmiejetnoscCzlowieka();
+
+	void tworzKomentarz(string komentarz);
+	void dodajKomentarz();
+	void zapiszSwiat();
+	void wczytajSwiat();
+	void wczytajOrganizm(char p, int s, int ini, int x, int y);
+	void stworzPlansze();
+
+	Polozenie znajdzWolnePoleObok(Organizm* organizm);
+	Polozenie wylosujPolozenie();
 	Organizm* zwrocOrganizm(Polozenie polozenie);
 	Swiat();
 	~Swiat();

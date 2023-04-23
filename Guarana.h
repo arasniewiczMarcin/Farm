@@ -3,7 +3,8 @@
 class Guarana: public Roslina
 {
 	public:
-	Guarana(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
+	bool umiejetnoscKolizja(Organizm* atakujacy, string &komentarz)override;
+	Guarana(char pionek, int sila, int inicjatywa, bool ruch, Swiat* swiat, Polozenie polozenie);
 	~Guarana();
 };
 

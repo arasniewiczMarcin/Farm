@@ -9,9 +9,14 @@
 
 class Czlowiek : public Zwierze
 {
+private:
+
 	public:
-	Czlowiek(char pionek, int sila, int inicjatywa, int wiek, Swiat* swiat);
+
+	Czlowiek(char pionek, int sila, int inicjatywa, bool ruch, Swiat* swiat, Polozenie polozenie);
 	~Czlowiek();
-	void akcja(Swiat* swiat);
+	
+	void akcja(Swiat* swiat)override;
+	void ustaw();
 };
 
